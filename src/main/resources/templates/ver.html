@@ -54,7 +54,7 @@
                     <td th:text="${factura.descripcion}"></td>
                     <td th:text="${factura.total}"></td>
                     <td th:text="${factura.createAt}"></td>
-                    <td ><a class="btn btn-primary" th:href="@{/factura/{id}(id=${factura.id})}">Ver</a></td>
+                    <td ><a class="btn btn-primary" th:href="@{/factura/detalle/{id}(id=${factura.id})}">Ver</a></td>
                     <td ><a class="btn btn-danger" th:href="@{/factura/eliminar/{id}(id=${factura.id})}"
                     onclick="return confirm('¿Estas seguro que deseas eliminar la factura?');">X</a></td>
                 </tr>
