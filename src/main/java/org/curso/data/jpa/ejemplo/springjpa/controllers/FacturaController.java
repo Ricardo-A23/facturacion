@@ -81,9 +81,9 @@ public class FacturaController {
         return  "redirect:/ver/" + factura.getCliente().getId();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/detalle/{id}")
     public String ver(@PathVariable Long id, Model model, RedirectAttributes mensajes) {
-        Factura factura = facturaService.findById(id);
+        Factura factura = facturaService.fetchByIdWithClienteWithItemFacturaWithProducto(id);
         if(factura == null){
             mensajes.addFlashAttribute("error", "Factura no encontrado");
         }
