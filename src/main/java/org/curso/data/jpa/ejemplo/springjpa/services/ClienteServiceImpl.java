@@ -55,4 +55,10 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Producto> findByNombre(String term) {
         return productoRepository.findByNombre(term);
     }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Cliente fetchByIdWithFacturas(Long id) {
+        return clienteRepository.fetchByIdWithFacturas(id);
+    }
 }

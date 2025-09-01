@@ -16,4 +16,5 @@ public interface ClienteService {
     void deleteById(Long id);
     Page<Cliente> findAll (Pageable pageable);
     List<Producto> findByNombre(String term);
+    Cliente fetchByIdWithFacturas(Long id);
 }

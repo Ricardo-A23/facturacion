@@ -31,7 +31,7 @@ public class ClienteController {
 
     @GetMapping("/ver/{id}")
     public String ver(@PathVariable Long id, Model model, RedirectAttributes mensaje) {
-        Cliente cliente = clienteService.findById(id);
+        Cliente cliente = clienteService.fetchByIdWithFacturas(id);
         if (cliente == null) {
             mensaje.addFlashAttribute("error", "El cliente no existe");
             return "redirect:/";
