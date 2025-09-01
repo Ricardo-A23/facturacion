@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente,Long> {
 
-    @Query("SELECT c FROM Cliente c join fetch c.facturas f WHERE c.id =?1")
+    @Query("SELECT c FROM Cliente c left join fetch c.facturas f WHERE c.id =?1")
     public Cliente fetchByIdWithFacturas(Long id);
 }
