@@ -15,4 +15,5 @@ public interface IFacturaService {
     void save(Factura factura);
     void deleteById(Long id);
     Page<Factura> findAll (Pageable pageable);
+    Factura fetchByIdWithClienteWithItemFacturaWithProducto(Long id);
 }
