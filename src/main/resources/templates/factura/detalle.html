@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/fragment::head"></head>
+<body>
+
+<div class="container">
+
+    <div class="card my-4">
+        <div class="card-header">
+            <h4 class="card-title">Detalle de Factura</h4>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-secondary" th:href="@{/ver/{id}(id=${factura.cliente.id})}">&laquo; Volver</a>
+            <div>
+                <ul class="list-group mt-4">
+                    <li class="list-group-item active" th:text="'Datos del cliente'"></li>
+                    <li class="list-group-item" th:text="${factura.cliente.nombre}"></li>
+                    <li class="list-group-item" th:text="${factura.cliente.apellidos}"></li>
+                    <li class="list-group-item" th:text="'Correo: ' + ${factura.cliente.email}"></li>
+                    <li class="list-group-item" th:text="'Telefono: ' + ${factura.cliente.telefono}"></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="list-group mt-4">
+                    <li class="list-group-item active" th:text="'Datos de la factura'"></li>
+                    <li class="list-group-item"  th:text="'Folio: ' + ${factura.id}"></li>
+                    <li class="list-group-item" th:text="'Descripción: ' + ${factura.descripcion}"></li>
+                    <li class="list-group-item" th:text="'Fecha: ' + ${factura.createAt}"></li>
+                </ul>
+            </div>
+
+            <div>
+                <table class="table table-striped mt-4">
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="producto : ${factura.items}">
+                        <td th:text="${producto.producto.nombre}"></td>
+                        <td th:text="${producto.producto.precio}"></td>
+                        <td th:text="${producto.cantidad}"></td>
+                        <td th:text="${producto.calcularImporte()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5 class="float-end">Total: <span class="badge text-bg-secondary" th:text="${factura.getTotal()}"></span></h5>
+            </div>
+
+            <div class="card border-info mb-4" style="max-width: 20rem;">
+             <div class="card-header">Observaciones</div>
+                <div class="card-body">
+                    <p th:if="${not #strings.isEmpty(factura.observacion)}" th:text="${factura.observacion}"></p>
+                    <h4 th:if="${#strings.isEmpty(factura.observacion)}">No tiene observaciones</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
