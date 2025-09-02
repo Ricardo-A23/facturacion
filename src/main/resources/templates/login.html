@@ -6,6 +6,7 @@
 
 <!-- Si llega con ?error -->
 <div th:if="${error != null}" th:text="${error}" class="alert alert-danger"></div>
+<div th:if="${success != null}" th:text="${success}" class="alert alert-success"></div>
 
 
 <form th:action="@{/login}" method="post">
