@@ -44,7 +44,7 @@ public class SpringSecurityConfig {
                             .requestMatchers("/eliminar/**").hasRole("ADMIN")
                             .anyRequest().authenticated()
                 )
-                .formLogin(login -> login.loginPage("/login"))
+                .formLogin(login -> login.loginPage("/login").permitAll())
                 .logout(LogoutConfigurer::permitAll);
         return http.build();
     }
