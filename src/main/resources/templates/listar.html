@@ -5,6 +5,7 @@
 
 <header th:replace="layout/fragment::header"></header>
 
+<div th:if="${info != null}" th:text="${info}" class="alert alert-danger"></div>
 
 <div class="container">
 
