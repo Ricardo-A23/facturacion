@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/fragment::head"></head>
+<body>
+
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header">Error: Acceso denegado</div>
+        <div class="card-body">
+            <h5 class="card-tittle">Lo sentimos no tienes permiso para acceder a este recurso</h5>
+            <a th:href="@{/}" class="btn btn-secondary">Ir al inicio</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
