@@ -12,7 +12,9 @@ import java.security.Principal;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login(@RequestParam(value = "error", required = false) String error, Principal principal, Model model, RedirectAttributes mensaje){
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "logout", required = false) String logout,
+                        Principal principal, Model model, RedirectAttributes mensaje){
         //el principal obtiene el usuario actual si ya esta autenticado
 
         if(principal != null){
@@ -22,6 +24,10 @@ public class LoginController {
 
         if(error != null){
             model.addAttribute("error", "Usuario o contraseña incorrecta");
+        }
+
+        if(logout != null){
+            model.addAttribute("success", "Ha cerrado sesión con exito");
         }
 
         return "login";
