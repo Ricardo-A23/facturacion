@@ -45,7 +45,8 @@ public class SpringSecurityConfig {
                             .anyRequest().authenticated()
                 )
                 .formLogin(login -> login.loginPage("/login").permitAll())
-                .logout(LogoutConfigurer::permitAll);
+                .logout(LogoutConfigurer::permitAll)
+                .exceptionHandling(denegado -> denegado.accessDeniedPage("/error_403"));
         return http.build();
     }
 
