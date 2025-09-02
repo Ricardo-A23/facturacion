@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -11,11 +12,11 @@ import java.security.Principal;
 public class LoginController {
 
     @GetMapping("/login")
-    public String login(@RequestParam String error, Principal principal,  Model model){
+    public String login(@RequestParam(value = "error", required = false) String error, Principal principal, Model model, RedirectAttributes mensaje){
         //el principal obtiene el usuario actual si ya esta autenticado
 
         if(principal != null){
-            model.addAttribute("info", "Ya tiene una sesión abierta" + principal.getName());
+            mensaje.addFlashAttribute("info", "Ya tiene una sesión abierta: " + principal.getName());
             return "redirect:/";
         }
 
