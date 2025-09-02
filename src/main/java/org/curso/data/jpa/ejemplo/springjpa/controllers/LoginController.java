@@ -1,0 +1,28 @@
+package org.curso.data.jpa.ejemplo.springjpa.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
+
+@Controller
+public class LoginController {
+
+    @GetMapping("/login")
+    public String login(@RequestParam String error, Principal principal,  Model model){
+        //el principal obtiene el usuario actual si ya esta autenticado
+
+        if(principal != null){
+            model.addAttribute("info", "Ya tiene una sesión abierta" + principal.getName());
+            return "redirect:/";
+        }
+
+        if(error != null){
+            model.addAttribute("error", "Usuario o contraseña incorrecta");
+        }
+
+        return "login";
+    }
+}
