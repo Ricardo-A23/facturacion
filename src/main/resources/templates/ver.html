@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/fragment::head"></head>
 <body>
 <header th:replace="layout/fragment::header"></header>
@@ -18,7 +18,7 @@
                     <a class="btn btn-secondary mx-4" th:href="@{/}">&laquo;  Volver</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary" th:href="@{/factura/form/{clienteId}(clienteId=${cliente.id})}">Crear
+                    <a class="btn btn-primary" th:href="@{/factura/form/{clienteId}(clienteId=${cliente.id})}" sec:authorize="hasRole('ROLE_ADMIN')">Crear
                         Factura</a>
                 </li>
             </ul>
@@ -43,8 +43,8 @@
                     <th>Descripción</th>
                     <th>Total</th>
                     <th>Fecha</th>
-                    <th>Detalle</th>
-                    <th>Eliminar</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Detalle</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
                 </tr>
                 </thead>
 
@@ -54,9 +54,9 @@
                     <td th:text="${factura.descripcion}"></td>
                     <td th:text="${factura.total}"></td>
                     <td th:text="${factura.createAt}"></td>
-                    <td ><a class="btn btn-primary" th:href="@{/factura/detalle/{id}(id=${factura.id})}">Ver</a></td>
-                    <td ><a class="btn btn-danger" th:href="@{/factura/eliminar/{id}(id=${factura.id})}"
-                    onclick="return confirm('¿Estas seguro que deseas eliminar la factura?');">X</a></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary" th:href="@{/factura/detalle/{id}(id=${factura.id})}" >Ver</a></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" th:href="@{/factura/eliminar/{id}(id=${factura.id})}"
+                    onclick="return confirm('¿Estas seguro que deseas eliminar la factura?');" >X</a></td>
                 </tr>
                 </tbody>
             </table>
